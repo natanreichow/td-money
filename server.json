@@ -2,7 +2,7 @@
   "transactions": [
     {
       "id": 1,
-      "description": "Development from Website",
+      "description": "Website development: Coffee Delivery",
       "type": "income",
       "category": "Sell",
       "price": 4000,
@@ -15,6 +15,22 @@
       "category": "Food",
       "price": 12,
       "createdAt": "2022-08-23T11:30:23.066Z"
+    },
+    {
+      "description": "App development",
+      "price": 2000,
+      "category": "Sell",
+      "type": "income",
+      "createdAt": "2022-08-24T08:04:13.755Z",
+      "id": 3
+    },
+    {
+      "description": "Apartment rent",
+      "price": 625,
+      "category": "Rent",
+      "type": "expense",
+      "createdAt": "2022-08-24T08:30:51.877Z",
+      "id": 4
     }
   ]
 }

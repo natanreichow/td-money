@@ -1,54 +1,35 @@
-import { SummaryCard, SummaryContainer } from "./styles"
-import { ArrowCircleDown, ArrowCircleUp, CurrencyDollar } from 'phosphor-react'
-import { useContext } from "react"
-import { TransactionContext } from "../../contexts/TransactionsContext"
+import { SummaryCard, SummaryContainer } from './styles'
+import { ArrowCircleDown, ArrowCircleUp, Wallet } from 'phosphor-react'
+import { priceFormater } from '../../utils/formatter'
+import { useSummary } from '../../hooks/useSummary'
 
 export function Summary() {
-  const { transactions } = useContext(TransactionContext)
-
-  // reduce transactions to { income: 0, expenses: 0, balance: 0 }
-  const summary = transactions.reduce((acc, transaction) => {
-    if (transaction.type === 'income') {
-      acc.income += transaction.price
-      acc.balance += transaction.price
-    } else {
-      acc.expenses += transaction.price
-      acc.balance -= transaction.price
-    }
-
-    return acc
-  },
-  {
-    income: 0,
-    expenses: 0,
-    balance: 0
-  }
-  )
+  const summary = useSummary()
 
   return (
     <SummaryContainer>
       <SummaryCard>
         <header>
           <span>Income</span>
-          <ArrowCircleUp size={32} color="#00B37E"/>
+          <ArrowCircleUp size={32} color="#00B37E" />
         </header>
-        <strong>{summary.income}</strong>
+        <strong>{priceFormater.format(summary.income)}</strong>
       </SummaryCard>
 
       <SummaryCard>
         <header>
           <span>Expenses</span>
-          <ArrowCircleDown size={32} color="#F75A68"/>
+          <ArrowCircleDown size={32} color="#F75A68" />
         </header>
-        <strong>{summary.expenses}</strong>
+        <strong>{priceFormater.format(summary.expenses)}</strong>
       </SummaryCard>
 
       <SummaryCard variant="green">
         <header>
           <span>Balance</span>
-          <CurrencyDollar size={32} color="#FFF"/>
+          <Wallet size={32} color="#FFF" />
         </header>
-        <strong>{summary.balance}</strong>
+        <strong>{priceFormater.format(summary.balance)}</strong>
       </SummaryCard>
     </SummaryContainer>
   )
